@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_erp_config_manager,ai.erp.config manager,model_ai_erp_config,ai_erp_suite.group_ai_erp_manager,1,1,1,1
+access_ai_erp_conversation_user,ai.erp.conversation user,model_ai_erp_conversation,ai_erp_suite.group_ai_erp_user,1,1,1,0
+access_ai_erp_conversation_manager,ai.erp.conversation manager,model_ai_erp_conversation,ai_erp_suite.group_ai_erp_manager,1,1,1,1
+access_ai_erp_message_user,ai.erp.message user,model_ai_erp_message,ai_erp_suite.group_ai_erp_user,1,0,1,0
+access_ai_erp_message_manager,ai.erp.message manager,model_ai_erp_message,ai_erp_suite.group_ai_erp_manager,1,1,1,1
+access_ai_erp_insight_user,ai.erp.insight user,model_ai_erp_insight,ai_erp_suite.group_ai_erp_user,1,0,0,0
+access_ai_erp_insight_manager,ai.erp.insight manager,model_ai_erp_insight,ai_erp_suite.group_ai_erp_manager,1,1,1,1
+access_ai_erp_forecast_user,ai.erp.forecast user,model_ai_erp_forecast,ai_erp_suite.group_ai_erp_user,1,0,1,0
+access_ai_erp_forecast_manager,ai.erp.forecast manager,model_ai_erp_forecast,ai_erp_suite.group_ai_erp_manager,1,1,1,1
+access_ai_invoice_wizard_user,ai.invoice.wizard user,model_ai_erp_invoice_wizard,ai_erp_suite.group_ai_erp_user,1,1,1,1
+access_ai_invoice_line_wizard_user,ai.invoice.line.wizard user,model_ai_erp_invoice_line_wizard,ai_erp_suite.group_ai_erp_user,1,1,1,1
+access_ai_forecast_wizard_user,ai.forecast.wizard user,model_ai_erp_forecast_wizard,ai_erp_suite.group_ai_erp_user,1,1,1,1
+access_ai_insight_wizard_user,ai.insight.wizard user,model_ai_erp_insight_wizard,ai_erp_suite.group_ai_erp_user,1,1,1,1

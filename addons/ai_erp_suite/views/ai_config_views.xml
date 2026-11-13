@@ -1,0 +1,47 @@
+<odoo>
+    <record id="view_ai_erp_config_list" model="ir.ui.view">
+        <field name="name">ai.erp.config.list</field>
+        <field name="model">ai.erp.config</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="company_id"/>
+                <field name="provider"/>
+                <field name="api_model"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_ai_erp_config_form" model="ir.ui.view">
+        <field name="name">ai.erp.config.form</field>
+        <field name="model">ai.erp.config</field>
+        <field name="arch" type="xml">
+            <form string="AI Provider Configuration">
+                <sheet>
+                    <div class="alert alert-warning" role="alert">
+                        API keys are stored in the Odoo database. Restrict configuration access and use encrypted backups and secure server administration. For production, consider an external secrets manager.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="company_id"/>
+                            <field name="provider"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="api_model"/>
+                            <field name="timeout_seconds"/>
+                            <field name="api_key" password="True"/>
+                        </group>
+                    </group>
+                    <group string="API Endpoint">
+                        <field name="api_endpoint" placeholder="https://api.openai.com/v1/chat/completions"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_ai_erp_config" model="ir.actions.act_window">
+        <field name="name">AI Provider Configuration</field>
+        <field name="res_model">ai.erp.config</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

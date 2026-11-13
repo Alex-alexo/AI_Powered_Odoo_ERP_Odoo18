@@ -1,0 +1,31 @@
+<odoo>
+    <record id="view_ai_forecast_wizard_form" model="ir.ui.view">
+        <field name="name">ai.erp.forecast.wizard.form</field>
+        <field name="model">ai.erp.forecast.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Inventory Demand Forecast">
+                <sheet>
+                    <div class="alert alert-info" role="alert">
+                        This first version uses a transparent moving-average baseline from confirmed sales order quantities. It is not a trained ML model.
+                    </div>
+                    <group>
+                        <field name="company_id"/>
+                        <field name="product_id"/>
+                        <field name="history_months"/>
+                        <field name="horizon_days"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_generate_forecast" type="object" string="Generate Forecast" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_ai_forecast_wizard" model="ir.actions.act_window">
+        <field name="name">Generate Inventory Forecast</field>
+        <field name="res_model">ai.erp.forecast.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

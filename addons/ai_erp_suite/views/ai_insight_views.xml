@@ -1,0 +1,102 @@
+<odoo>
+    <record id="view_ai_erp_insight_list" model="ir.ui.view">
+        <field name="name">ai.erp.insight.list</field>
+        <field name="model">ai.erp.insight</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="severity == 'critical'" decoration-warning="severity == 'warning'">
+                <field name="title"/>
+                <field name="category"/>
+                <field name="severity"/>
+                <field name="company_id"/>
+                <field name="state"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_ai_erp_insight_form" model="ir.ui.view">
+        <field name="name">ai.erp.insight.form</field>
+        <field name="model">ai.erp.insight</field>
+        <field name="arch" type="xml">
+            <form string="Business Insight">
+                <header>
+                    <button name="action_dismiss" type="object" string="Dismiss" invisible="state != 'open'"/>
+                    <button name="action_reopen" type="object" string="Reopen" invisible="state == 'open'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="open,dismissed,resolved"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="title"/>
+                        <field name="category"/>
+                        <field name="severity"/>
+                        <field name="company_id"/>
+                        <field name="source_model"/>
+                    </group>
+                    <group string="Finding">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                    <group string="Recommended action">
+                        <field name="recommendation" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_ai_erp_insights" model="ir.actions.act_window">
+        <field name="name">Business Insights</field>
+        <field name="res_model">ai.erp.insight</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="action_ai_erp_forecasts" model="ir.actions.act_window">
+        <field name="name">Inventory Forecasts</field>
+        <field name="res_model">ai.erp.forecast</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="view_ai_erp_forecast_list" model="ir.ui.view">
+        <field name="name">ai.erp.forecast.list</field>
+        <field name="model">ai.erp.forecast</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="history_months"/>
+                <field name="horizon_days"/>
+                <field name="forecast_qty"/>
+                <field name="current_free_qty"/>
+                <field name="recommended_replenishment_qty"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_ai_erp_forecast_form" model="ir.ui.view">
+        <field name="name">ai.erp.forecast.form</field>
+        <field name="model">ai.erp.forecast</field>
+        <field name="arch" type="xml">
+            <form string="Inventory Demand Forecast">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="product_id"/>
+                        <field name="company_id"/>
+                        <field name="method"/>
+                    </group>
+                    <group string="Forecast parameters">
+                        <field name="history_start"/>
+                        <field name="history_end"/>
+                        <field name="history_months"/>
+                        <field name="horizon_days"/>
+                    </group>
+                    <group string="Forecast results">
+                        <field name="historical_qty"/>
+                        <field name="average_monthly_qty"/>
+                        <field name="forecast_qty"/>
+                        <field name="current_free_qty"/>
+                        <field name="recommended_replenishment_qty"/>
+                    </group>
+                    <group string="Interpretation and limitations">
+                        <field name="note" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

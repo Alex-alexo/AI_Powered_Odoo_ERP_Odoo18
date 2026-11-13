@@ -1,0 +1,53 @@
+<odoo>
+    <record id="view_ai_invoice_wizard_form" model="ir.ui.view">
+        <field name="name">ai.erp.invoice.wizard.form</field>
+        <field name="model">ai.erp.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form string="AI Supplier Invoice Processing">
+                <sheet>
+                    <div class="alert alert-info" role="alert">
+                        Upload a text-based PDF. AI extraction is a draft-assistance feature: verify the supplier, invoice date, lines, account, tax, and totals before creating the vendor bill. The bill is never posted automatically.
+                    </div>
+                    <group>
+                        <field name="company_id"/>
+                        <field name="file_name" invisible="1"/>
+                        <field name="file_data" filename="file_name" widget="binary"/>
+                        <field name="extraction_status" readonly="1"/>
+                    </group>
+                    <group string="Review extracted header" invisible="extraction_status != 'extracted'">
+                        <field name="vendor_name"/>
+                        <field name="partner_id" required="extraction_status == 'extracted'"/>
+                        <field name="invoice_reference"/>
+                        <field name="invoice_date"/>
+                        <field name="currency_id"/>
+                        <field name="extracted_total"/>
+                    </group>
+                    <group string="Review extracted lines" invisible="extraction_status != 'extracted'">
+                        <field name="line_ids">
+                            <list editable="bottom">
+                                <field name="name"/>
+                                <field name="quantity"/>
+                                <field name="price_unit"/>
+                            </list>
+                        </field>
+                    </group>
+                    <group string="Accounting choices" invisible="extraction_status != 'extracted'">
+                        <field name="expense_account_id" required="extraction_status == 'extracted'"/>
+                        <field name="tax_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_extract_invoice" type="object" string="Extract Invoice Data" class="oe_highlight"/>
+                    <button name="action_create_draft_vendor_bill" type="object" string="Create Draft Vendor Bill" class="oe_highlight" invisible="extraction_status != 'extracted'"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_ai_invoice_wizard" model="ir.actions.act_window">
+        <field name="name">Process Supplier Invoice</field>
+        <field name="res_model">ai.erp.invoice.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
